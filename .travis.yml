@@ -1,41 +1,45 @@
 sudo: false
 
-notifications:
-  email:
-    on_success: never
-    on_failure: change
-
-cache:
-  directories:
-    - node_modules
-    - vendor
-    - $HOME/phpunit-bin
-
 language:
-  - php
-  - node_js
+    - php
+    - node_js
 
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
+    - 5.5
+
+node_js:
+    - stable
 
 env:
-  - WP_VERSION=latest WP_MULTISITE=0
-  - WP_VERSION=latest WP_MULTISITE=1
-  - WP_VERSION=trunk WP_MULTISITE=0
-  - WP_VERSION=trunk WP_MULTISITE=1
+    global:
+        - WP_MULTISITE=1
+        - PHANTOMJS_CDNURL='http://files.urldocs.com/share/phantomjs'
+
+branches:
+    only:
+        - master
+
+before_install:
+    - WP_VERSION=$( cat ./wp-includes/version.php | grep 'wp_version =' | grep -oE '[0-9][0-9]*\.[0-9][0-9]*(\.[0-9][0-9]*)*(-[0-9a-z]*)*' )
+    - echo "WP_VERSION=$WP_VERSION"
 
 install:
-  - nvm install 6 && nvm use 6
-  - export DEV_LIB_PATH=dev-lib
-  - if [ ! -e "$DEV_LIB_PATH" ] && [ -L .travis.yml ]; then export DEV_LIB_PATH=$( dirname $( readlink .travis.yml ) ); fi
-  - if [ ! -e "$DEV_LIB_PATH" ]; then git clone https://github.com/xwp/wp-dev-lib.git $DEV_LIB_PATH; fi
-  - source $DEV_LIB_PATH/travis.install.sh
+    - export DEV_LIB_PATH=dev-lib
+    - if [ ! -e "$DEV_LIB_PATH" ] && [ -L .travis.yml ]; then export DEV_LIB_PATH=$( dirname $( readlink .travis.yml ) ); fi
+    - if [ ! -e "$DEV_LIB_PATH" ]; then git clone https://github.com/xwp/wp-dev-lib.git $DEV_LIB_PATH; fi
+    - set -x
+    - source $DEV_LIB_PATH/travis.install.sh
 
 script:
-  - source $DEV_LIB_PATH/travis.script.sh
+    - source $DEV_LIB_PATH/travis.script.sh
 
 after_script:
-  - source $DEV_LIB_PATH/travis.after_script.sh
+    - source $DEV_LIB_PATH/travis.after_script.sh
+
+after_success:
+    - |
+        if [ $TRAVIS_BRANCH == 'master' ] && [ $TRAVIS_PULL_REQUEST == 'false' ]; then
+
+        fi
+
+notifications:
