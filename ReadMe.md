@@ -9,6 +9,11 @@
 <h1 id="logo">
 	<a href="https://wordpress.org/"><img alt="WordPress" src="wp-admin/images/wordpress-logo.png" /></a>
 </h1>
+
+# wptestsite
+For testing out environment / devOp / WP workflow tools.
+[![Build Status](https://travis-ci.org/OWL-Labs/WordPress.svg?branch=master)](https://travis-ci.org/OWL-Labs/WordPress)
+
 <p style="text-align: center">Semantic Personal Publishing Platform</p>
 
 <h2>First Things First</h2>
@@ -92,6 +97,21 @@
 
 <h2>License</h2>
 <p>WordPress is free software, and is released under the terms of the <abbr title="GNU General Public License">GPL</abbr> version 2 or (at your option) any later version. See <a href="license.txt">license.txt</a>.</p>
+
+<h2>wpestsite</h2>
+
+1. Get wptestsite git repo.
+
+```
+cd ../www/wptestsite.com
+then
+git clone --recursive git@github.com:OWL-Labs/WordPress.git htdocs
+cd htdocs
+```
+
+2. Config values.
+
+These are found in the `private` folder.
 
 </body>
 </html>
