@@ -1,6 +1,6 @@
 # wptestsite
 For testing out environment / devOp / WP workflow tools.
-
+[![Build Status](https://travis-ci.org/OWL-Labs/WordPress.svg?branch=master)](https://travis-ci.org/OWL-Labs/WordPress)
 
 1. Get wptestsite git repo.
 
