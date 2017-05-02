@@ -7,7 +7,7 @@ For testing out environment / devOp / WP workflow tools.
 ```
 cd ../www/wptestsite.com
 then
-git clone —-recursive https://github.com/OWL-Labs/wptestsite.git htdocs
+git clone --recursive git@github.com:OWL-Labs/WordPress.git htdocs
 cd htdocs
 ```
 
