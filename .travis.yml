@@ -42,7 +42,7 @@ after_success:
   - git config --global user.email "merenuou@yahoo.com"
   - git config --global user.name "Obi Did this"
   - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER" 
-  - git push -q https://github.com/OWL-Labs/WordPress.git --tags
+  - git push -q git@github.com:OWL-Labs/WordPress.git --tags
   - ls -R
 
 notifications:
