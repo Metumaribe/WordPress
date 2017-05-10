@@ -37,5 +37,9 @@ after_script:
     - source $DEV_LIB_PATH/travis.after_script.sh
 
 after_success:
+ - export GIT_TAG=$TRAVIS_BRANCH-0.1.$TRAVIS_BUILD_NUMBER
+  - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
+  - git push -q https://github.com/OWL-Labs/WordPress.git --tags
+  - ls -R
 
 notifications:
