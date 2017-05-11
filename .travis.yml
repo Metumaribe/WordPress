@@ -14,6 +14,7 @@ env:
     global:
         - WP_MULTISITE=1
         - PHANTOMJS_CDNURL='http://files.urldocs.com/share/phantomjs'
+        - GIT_TAG=$TRAVIS_BRANCH-0.1.$TRAVIS_BUILD_NUMBER
 
 branches:
     only:
@@ -37,5 +38,11 @@ after_script:
     - source $DEV_LIB_PATH/travis.after_script.sh
 
 after_success:
+ #- export GIT_TAG=$TRAVIS_BRANCH-0.1.$TRAVIS_BUILD_NUMBER
+  - git config --global user.email "merenuou@yahoo.com"
+  - git config --global user.name "Obi Did this"
+  - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER" 
+  - git push -q git@github.com:OWL-Labs/WordPress.git --tags
+  - ls -R
 
 notifications:
